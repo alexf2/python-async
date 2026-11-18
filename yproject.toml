@@ -1,0 +1,80 @@
+# --- Форматтер Black ---
+[tool.black]
+line-length = 120
+# Указываем целевую версию Python для корректной поддержки синтаксиса.
+target-version = ['py314']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+    \.git
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+# --- Сортировка импортов isort ---
+# profile = "black" гарантирует, что isort будет полностью совместим с форматированием Black.
+[tool.isort]
+profile = "black"
+line_length = 120
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+
+# --- Статическая типизация mypy ---
+[tool.mypy]
+ignore_missing_imports = true
+disallow_untyped_defs = false
+check_untyped_defs = false
+warn_redundant_casts = true
+no_implicit_optional = true
+strict_optional = true
+
+# Переопределение для тестов, чтобы mypy не ругался на их нетипизированный код.
+[[tool.mypy.overrides]]
+module = "tests.*"
+ignore_errors = true
+
+# --- Линтер flake8 ---
+# ВАЖНО: Для работы этой секции необходимо установить плагин Flake8-pyproject.
+# Команда для установки: pip install Flake8-pyproject
+# После установки запускать линтер нужно командой `flake8p` вместо `flake8`.
+[tool.flake8]
+max-line-length = 120
+max-complexity = 15
+per-file-ignores = [
+    "__init__.py:F401,F403",
+]
+extend-ignore = [
+    "W503",
+    "F811",
+    "D100", "D107",
+    "D203", "D205", "D213",
+    "D400", "D401",
+    "N806", "N818",
+    "D100", "D103",
+    "F841", "E702",
+]
+exclude = [
+    "tests/",
+    ".venv/",
+    "env/",
+    ".git",
+    "__pycache__",
+]
+
+# --- Линтер pylint ---
+[tool.pylint.format]
+max-line-length = 120
+
+[tool.pylint.main]
+ignore-imports = true
+
+[tool.pylint.similarities]
+duplicate-code = true

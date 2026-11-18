@@ -1,0 +1,12 @@
+{
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnSave": true,
+        "editor.rulers": [120]
+    },
+    "black-formatter.importStrategy": "fromEnvironment",
+    // Настройка для автоматической организации импортов с помощью isort при сохранении
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit"
+    }
+}
