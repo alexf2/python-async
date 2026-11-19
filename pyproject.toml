@@ -1,6 +1,7 @@
 # --- Форматтер Black ---
 [tool.black]
 line-length = 120
+skip-string-normalization = true
 # Указываем целевую версию Python для корректной поддержки синтаксиса.
 target-version = ['py314']
 include = '\.pyi?$'

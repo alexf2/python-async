@@ -1,12 +1,16 @@
 {
     "[python]": {
         "editor.defaultFormatter": "ms-python.black-formatter",
-        "editor.formatOnSave": true,
-        "editor.rulers": [120]
+        "editor.formatOnSave": true        
     },
+    
     "black-formatter.importStrategy": "fromEnvironment",
     // Настройка для автоматической организации импортов с помощью isort при сохранении
     "editor.codeActionsOnSave": {
         "source.organizeImports": "explicit"
-    }
+    },
+
+     "flake8.args": [
+        "--max-line-length=120"
+    ]
 }
